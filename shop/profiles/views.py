@@ -15,7 +15,6 @@ def profiles(request):
     if request.GET:
         for key, value in request.GET.items():
             logger.info(f'My param: {key} - {value}')
-
     logger.info(os.getenv("MY_DEBUG_VARIABLE"))
     logger.info(type(os.getenv("MY_DEBUG_VARIABLE")))
     logger.info(settings.DEBUG)
@@ -31,3 +30,4 @@ def profiles(request):
         ERL = 'LOSER'
         logger.info(f'Your character is LOSER')
     return HttpResponse(f"Profile index view. Hi, {ERL}")
+

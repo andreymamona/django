@@ -23,7 +23,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.getenv('MY_SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False if os.getenv("MY_DEBUG_VARIABLE") == 'False' else True
+DEBUG = os.getenv("MY_DEBUG_VARIABLE") == 'True'
 
 ALLOWED_HOSTS = ['.localhost', '127.0.0.1', '[::1]']
 
@@ -78,7 +78,7 @@ DATABASES = {
         "ENGINE": "django.db.backends.postgresql",
         "NAME": "django",
         "USER": "django",
-        "PASSWORD": os.getenv("POSTGRES_PASSWORD"),
+        "PASSWORD": os.getenv("POSTGRES_PASSWORD", 'django'),
         "HOST": "localhost",
         "PORT": 5432,
     }

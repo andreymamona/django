@@ -1,16 +1,31 @@
-# This is a sample Python script.
-
-# Press Shift+F10 to execute it or replace it with your code.
-# Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
+import datetime
+import time
 
 
-def print_hi(name):
-    # Use a breakpoint in the code line below to debug your script.
-    print(f'Hi, {name}')  # Press Ctrl+F8 to toggle the breakpoint.
+def task16(start: int, end: int) -> list[int]:
+    """
+    Два натуральных числа называют дружественными, если каждое из них равно
+    сумме всех делителей другого,
+    кроме самого этого числа. Реализовать функцию для поиска всех пар
+    дружественных чисел в заданном диапазоне
+    """
+    t_start = time.time()
+
+    def summa(m: int):
+        summ = 1
+        for i in range(2, int(m / 2) + 1):
+            if m % i == 0:
+                summ += i
+        return summ
+    friend = []
+    for j in range(start, end + 1):
+        a = summa(j)
+        b = summa(a)
+        if b == j != a:
+            friend.append(j)
+            print(t_start - time.time())
+    print(t_start - time.time())
+    return friend
 
 
-# Press the green button in the gutter to run the script.
-if __name__ == '__main__':
-    print_hi('PyCharm')
-
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
+print(task16(1, 20000))
