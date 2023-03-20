@@ -25,13 +25,6 @@ class Product(models.Model):
     def __str__(self):
         return f'Product: {self.title} Price: {self.price}'
 
-    def get_field_data(self):
-        datalist = []
-        for field in self._meta.get_fields():
-            if field.name != 'id' and field.name != 'created_at':
-                datalist.append(getattr(self, field.name))
-        return datalist
-
 
 class Purchase(models.Model):
     user = models.ForeignKey(

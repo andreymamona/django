@@ -2,11 +2,19 @@ import logging
 from django.http import HttpResponse
 from django.db.models import Avg, Count, Min, Sum, Q, FloatField, Func, F, Value
 from django.shortcuts import render
-
+from django.views.generic import ListView
 from products.forms import CreateItemForm
 from products.models import Product, Purchase
+from django_tables2 import SingleTableView
+from .tables import ProductTable
 
 logger = logging.getLogger(__name__)
+
+
+class ProductListView(SingleTableView):
+    model = Product
+    table_class = ProductTable
+    template_name = 'products.html'
 
 
 def index(request):
@@ -48,7 +56,11 @@ def index(request):
         return HttpResponse(string)
 
     string = f"<br>".join([str(p) for p in products])
-    return HttpResponse(string)
+    context = {
+        "object_list": products,
+    }
+
+    return render(request, "index.html", context)
 
 
 def additem(request):
