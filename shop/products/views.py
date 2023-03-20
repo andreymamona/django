@@ -3,6 +3,7 @@ from django.http import HttpResponse
 from django.db.models import Avg, Count, Min, Sum, Q, FloatField, Func, F, Value
 from django.shortcuts import render
 
+from products.forms import CreateItemForm
 from products.models import Product, Purchase
 
 logger = logging.getLogger(__name__)
@@ -29,7 +30,7 @@ def index(request):
     sort_sales_cost = request.GET.get("sort_sales_cost")
     if sort_sales_cost is not None:
         products = products.annotate(pur_count=Sum("purchases__count"))
-        products = products.annotate(sales_cost=F("pur_count")*F("price"))
+        products = products.annotate(sales_cost=F("pur_count") * F("price"))
         products = products.filter(sales_cost__gte=1)
         products = products.order_by("sales_cost")
         string = ''
@@ -48,3 +49,23 @@ def index(request):
 
     string = f"<br>".join([str(p) for p in products])
     return HttpResponse(string)
+
+
+def additem(request):
+    form = CreateItemForm()
+    if request.method == "POST":
+        form = CreateItemForm(request.POST)
+        if form.is_valid():
+            product = Product.objects.create(title=form.cleaned_data['title'],
+                                             price=form.cleaned_data['price'],
+                                             description=form.cleaned_data['description'],
+                                             color=form.cleaned_data['color'],
+                                             )
+            return HttpResponse(f"Item added :) <br> <p><a href='/'>Main page</a></p>")
+        else:
+            return HttpResponse(f"Sorry, some data is invalid <br> <p><a href='/'>Main page</a></p>"
+                                f"<p><a href='/additem'>Add item</a></p>")
+    else:
+        form = CreateItemForm()
+
+    return render(request, "additem.html", {"form": form})
