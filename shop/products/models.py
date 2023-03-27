@@ -1,5 +1,6 @@
 from django.conf import settings
 from django.db import models
+from django.db.models import ImageField
 
 COLOR_CHOICES = (
     ("RED", "Red"),
@@ -16,6 +17,7 @@ COLOR_CHOICES = (
 class Product(models.Model):
     title = models.CharField(max_length=255)
     price = models.FloatField(default=0)
+    image = ImageField(upload_to="products/", blank=True, null=True, default="media/image_item_default.png")
     description = models.TextField(blank=True, null=True)
     color = models.CharField(max_length=32, choices=COLOR_CHOICES, default=None)
     created_at = models.DateTimeField(

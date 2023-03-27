@@ -11,12 +11,6 @@ from .tables import ProductTable
 logger = logging.getLogger(__name__)
 
 
-class ProductListView(SingleTableView):
-    model = Product
-    table_class = ProductTable
-    template_name = 'products.html'
-
-
 def index(request):
     products = Product.objects.all()
 
@@ -41,23 +35,23 @@ def index(request):
         products = products.annotate(sales_cost=F("pur_count") * F("price"))
         products = products.filter(sales_cost__gte=1)
         products = products.order_by("sales_cost")
-        string = ''
-        for p in products:
-            string += f"<br>{str(p)} x {p.pur_count} = {p.sales_cost}"
-        return HttpResponse(string)
+        # string = ''
+        # for p in products:
+        #     string += f"<br>{str(p)} x {p.pur_count} = {p.sales_cost}"
+        # return HttpResponse(string)
 
     purchases_count = request.GET.get("sort_sales_num")
     if purchases_count is not None:
         products = products.annotate(pur_count=Sum("purchases__count"))
-        products = products.order_by("pur_count")
-        string = ''
-        for p in products:
-            string += f"<br>{str(p)} Purchases: {p.pur_count}"
-        return HttpResponse(string)
+        products = products.order_by("-pur_count")
+        # string = ''
+        # for p in products:
+        #     string += f"<br>{str(p)} Purchases: {p.pur_count}"
+        # return HttpResponse(string)
 
-    string = f"<br>".join([str(p) for p in products])
+    # string = f"<br>".join([str(p) for p in products])
     context = {
-        "object_list": products,
+        "products": products,
     }
 
     return render(request, "index.html", context)
@@ -81,3 +75,15 @@ def additem(request):
         form = CreateItemForm()
 
     return render(request, "additem.html", {"form": form})
+
+
+def product_info(request):
+    item_id = request.GET.get("id")
+    try:
+        product = Product.objects.get(id=item_id)
+    except Product.DoesNotExist:
+        return HttpResponse(f"Ooops...wrong ID<br> <p><a href='/'>Main page</a></p>")
+    context = {
+        "product": product,
+    }
+    return render(request, "product_info.html", context)

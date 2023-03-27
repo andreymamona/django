@@ -1,0 +1,10 @@
+<div class="card" style="width: 18rem;">
+    <a href="product_info/?id={{ product.id }}">
+        <img src="{{ product.image }}" class="rounded card-img-top"
+             style="height: 178px; object-fit: scale-down" alt="image">
+    </a>
+    <div class="card-body">
+        <b><p class="card-text">{{ product.title }}</p></b>
+        <p class="card-text">Price: {{ product.price }}</p>
+    </div>
+</div>

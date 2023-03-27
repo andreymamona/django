@@ -3,18 +3,20 @@
 {% block title %}Products{% endblock %}
 
 {% block content %}
-    {% render_table table %}
-    <div class="row">
-        <div class="col-2">
-            <form action="/register">
-                <input type="submit" value="Registration"/>
-            </form>
-        </div>
-        <div class="col-2">
-            <form action="/additem">
-                <input type="submit" value="Add item"/>
-            </form>
+    <div class="container-fluid col-10">
+        {% render_table table %}
+        <div class="row">
+            <div class="col-2">
+                <form action="/register">
+                    <input type="submit" value="Registration"/>
+                </form>
+            </div>
+            <div class="col-2">
+                <form action="/additem">
+                    <input type="submit" value="Add item"/>
+                </form>
+            </div>
+
         </div>
     </div>
-
 {% endblock %}

@@ -5,9 +5,9 @@ import logging
 from django.http import HttpResponse
 from django.contrib.auth.models import User
 from django.conf import settings
+from django.contrib.auth import logout, login, authenticate
 
-from profiles.forms import RegisterForm
-
+from profiles.forms import RegisterForm, LoginForm
 
 logger = logging.getLogger(__name__)
 
@@ -42,13 +42,13 @@ def register(request):
         if form.is_valid():
             if form.cleaned_data['are_you_elder_18'] is True:
                 if form.cleaned_data['password'] == form.cleaned_data['repeat_password']:
-                # Process validated data
+                    # Process validated data
 
                     user = User.objects.create_user(email=form.cleaned_data['email'],
                                                     password=form.cleaned_data['password'],
                                                     first_name=form.cleaned_data['first_name'],
                                                     last_name=form.cleaned_data['last_name'],
-                                                    username=form.cleaned_data['username'],)
+                                                    username=form.cleaned_data['username'], )
                     return HttpResponse(f"Thanks for registration :) <br> <p><a href='/'>Main page</a></p>")
                 else:
                     return HttpResponse(f"Sorry, you entered different passwords <br> <p><a href='/'>Main page</a></p>"
@@ -59,3 +59,25 @@ def register(request):
         form = RegisterForm()
 
     return render(request, "register.html", {"form": form})
+
+
+def login_view(request):
+    if request.method == "POST":
+        form = LoginForm(request.POST)
+        if form.is_valid():
+            user = authenticate(request=request,
+                                username=form.cleaned_data['email'],
+                                password=form.cleaned_data['password'],
+                                )
+            if user is None:
+                return HttpResponse('BadRequest', status=400)
+            login(request, user)
+            return redirect("index")
+    else:
+        form = LoginForm()
+    return render(request, "login.html", {"form": form})
+
+
+def logout_view(request):
+    logout(request)
+    return redirect("index")
