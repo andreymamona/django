@@ -40,7 +40,7 @@ def register(request):
     if request.method == "POST":
         form = RegisterForm(request.POST)
         if form.is_valid():
-            if form.cleaned_data['are_you_elder_18'] is True:
+            if form.cleaned_data['are_you_older_18'] is True:
                 if form.cleaned_data['password'] == form.cleaned_data['repeat_password']:
                     # Process validated data
 
@@ -66,7 +66,7 @@ def login_view(request):
         form = LoginForm(request.POST)
         if form.is_valid():
             user = authenticate(request=request,
-                                username=form.cleaned_data['email'],
+                                username=form.cleaned_data['username'],
                                 password=form.cleaned_data['password'],
                                 )
             if user is None:

@@ -7,12 +7,12 @@
           integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     {% block styles %} {% endblock %}
 </head>
-<body>
+<body style="background-color: #efdfa9">
 <nav class="navbar navbar-expand-lg bg-light navbar-collapse">
     <div class="container-fluid">
         <a class="navbar-brand" href="#">
-        <img src="../media/image_money.png" alt="logo" width="40" height="40" class="d-inline-block align-text-top"
-        style="">
+            <img src="../media/image_money.png" alt="logo" width="40" height="40" class="d-inline-block align-text-top"
+                 style="">
         </a>
         <a class="navbar-brand" href="#">MAVL</a>
         <div class="collapse navbar-collapse" id="navbarText">
@@ -24,15 +24,17 @@
                     <a class="nav-link" href="#">Contacts</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Cart</a>
+                    <a class="nav-link" href="/additem">Add new item</a>
                 </li>
             </ul>
-                 <li class="nav-item border">
+            <ul class="navbar-nav me-1 mb-2 mb-lg-0">
+                <li class="nav-item border">
                     <a class="nav-link" href="/login">Login</a>
                 </li>
-                <li class="nav-item ">
+                <li class="nav-item border">
                     <a class="nav-link" href="/register">Registration</a>
                 </li>
+            </ul>
 
         </div>
     </div>
