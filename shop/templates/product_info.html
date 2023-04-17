@@ -4,7 +4,7 @@
 {% block content %}
     <div class="container-fluid col-6">
         <div class="card" style="width: 30rem;">
-            <img src="/{{ product.image }}" class="card-img-top" alt="image">
+            <img src="{{ product.image.url }}" class="card-img-top" alt="image">
             <div class="card-body">
                 <h5 class="card-title">{{ product.title }}</h5>
                 <p class="card-text">{{ product.price }}</p>

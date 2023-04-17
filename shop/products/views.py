@@ -35,21 +35,12 @@ def index(request):
         products = products.annotate(sales_cost=F("pur_count") * F("price"))
         products = products.filter(sales_cost__gte=1)
         products = products.order_by("sales_cost")
-        # string = ''
-        # for p in products:
-        #     string += f"<br>{str(p)} x {p.pur_count} = {p.sales_cost}"
-        # return HttpResponse(string)
 
     purchases_count = request.GET.get("sort_sales_num")
     if purchases_count is not None:
         products = products.annotate(pur_count=Sum("purchases__count"))
         products = products.order_by("-pur_count")
-        # string = ''
-        # for p in products:
-        #     string += f"<br>{str(p)} Purchases: {p.pur_count}"
-        # return HttpResponse(string)
 
-    # string = f"<br>".join([str(p) for p in products])
     context = {
         "products": products,
     }
@@ -65,7 +56,7 @@ def additem(request):
             product = Product.objects.create(title=form.cleaned_data['title'],
                                              price=form.cleaned_data['price'],
                                              description=form.cleaned_data['description'],
-                                             color=form.cleaned_data['color'],
+                                             # color=form.cleaned_data['color'],
                                              )
             return HttpResponse(f"Item added :) <br> <p><a href='/'>Main page</a></p>")
         else:

@@ -2,24 +2,26 @@ from django.conf import settings
 from django.db import models
 from django.db.models import ImageField
 
-COLOR_CHOICES = (
-    ("RED", "Red"),
-    ("GREEN", "Green"),
-    ("BLUE", "Blue"),
-    ("BLACK", "Black"),
-    ("WHITE", "White"),
-    ("BROWN", "Brown"),
-    ("YELLOW", "Yellow"),
-    (None, None),
-)
+# COLOR_CHOICES = (
+#     ("RED", "Red"),
+#     ("GREEN", "Green"),
+#     ("BLUE", "Blue"),
+#     ("BLACK", "Black"),
+#     ("WHITE", "White"),
+#     ("BROWN", "Brown"),
+#     ("YELLOW", "Yellow"),
+#     (None, None),
+# )
 
 
 class Product(models.Model):
+    external_id = models.CharField(max_length=255, blank=True, null=True)
     title = models.CharField(max_length=255)
     price = models.FloatField(default=0)
     image = ImageField(upload_to="products/", blank=True, null=True, default="image_item_default.png")
     description = models.TextField(blank=True, null=True)
-    color = models.CharField(max_length=32, choices=COLOR_CHOICES, default=None)
+    category = models.TextField(blank=True, null=True)
+    # color = models.CharField(max_length=32, choices=COLOR_CHOICES, default=None)
     created_at = models.DateTimeField(
         auto_now_add=True, db_index=True
     )

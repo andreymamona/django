@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
+    "rest_framework.authtoken",
     'products',
     'crispy_forms',
     'crispy_bootstrap5',
@@ -169,3 +170,22 @@ MY_CUSTOM_VARIABLE = os.getenv("MY_CUSTOM_VARIABLE", None)
 PRIMARY_VALUE = os.getenv('PRIMARY_VALUE', 'SMART')
 FIRST_CHARACTER = os.getenv('FIRST_CHARACTER', 'Monty Python')
 SECOND_CHARACTER = os.getenv('SECOND_CHARACTER', 'Rick Sanchez')
+
+REST_FRAMEWORK = {
+    "DEFAULT_PAGINATION_CLASS": "rest_framework.pagination.PageNumberPagination",
+    "DEFAULT_AUTHENTICATION_CLASSES": [
+        "rest_framework.authentication.BasicAuthentication",
+        "rest_framework.authentication.SessionAuthentication",
+        'rest_framework.authentication.TokenAuthentication',
+    ],
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.IsAuthenticated', ],
+    "PAGE_SIZE": 20,
+}
+
+CACHES = {
+   "default": {
+       "BACKEND": "django.core.cache.backends.redis.RedisCache",
+       "LOCATION": "redis://127.0.0.1:6379",
+   }
+}

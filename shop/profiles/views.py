@@ -9,20 +9,24 @@ from django.contrib.auth import logout, login, authenticate
 
 from profiles.forms import RegisterForm, LoginForm
 
+from faker import Faker
+fake = Faker()
+
+
 logger = logging.getLogger(__name__)
 
 
 def profiles(request):
-    if request.GET.get('param'):
-        logger.info(f'My param: {request.GET.get("param")}')
-    if request.GET:
-        for key, value in request.GET.items():
-            logger.info(f'My param: {key} - {value}')
-    logger.info(os.getenv("MY_DEBUG_VARIABLE"))
-    logger.info(type(os.getenv("MY_DEBUG_VARIABLE")))
-    logger.info(settings.DEBUG)
-    logger.info(type(settings.DEBUG))
-    logger.info(settings.PRIMARY_VALUE)
+    # if request.GET.get('param'):
+    #     logger.info(f'My param: {request.GET.get("param")}')
+    # if request.GET:
+    #     for key, value in request.GET.items():
+    #         logger.info(f'My param: {key} - {value}')
+    # logger.info(os.getenv("MY_DEBUG_VARIABLE"))
+    # logger.info(type(os.getenv("MY_DEBUG_VARIABLE")))
+    # logger.info(settings.DEBUG)
+    # logger.info(type(settings.DEBUG))
+    # logger.info(settings.PRIMARY_VALUE)
     if settings.PRIMARY_VALUE == 'FUN':
         ERL = settings.FIRST_CHARACTER
         logger.info(f'Your character is {settings.FIRST_CHARACTER}')
@@ -54,7 +58,7 @@ def register(request):
                     return HttpResponse(f"Sorry, you entered different passwords <br> <p><a href='/'>Main page</a></p>"
                                         f"<br> <p><a href='/register'>Registration</a></p>")
             else:
-                return HttpResponse(f"Sorry, you must be elder than 18 <br> <p><a href='/'>Main page</a></p>")
+                return HttpResponse(f"Sorry, you must be older than 18 <br> <p><a href='/'>Main page</a></p>")
     else:
         form = RegisterForm()
 
@@ -81,3 +85,7 @@ def login_view(request):
 def logout_view(request):
     logout(request)
     return redirect("index")
+
+
+def random_generator(request):
+    ...
