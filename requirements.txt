@@ -12,3 +12,6 @@ scrapy==2.8.0
 products==1.1.2
 requests==2.28.2
 Faker==18.4.0
+
+factory-boy>=3.2.1
+pytest-factoryboy>=2.5.0
