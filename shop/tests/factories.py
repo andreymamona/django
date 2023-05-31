@@ -12,6 +12,5 @@ class ProductFactory(DjangoModelFactory):
         model = Product
 
     title = factory.Faker("word")
-    color = "RED"
     price = Decimal(100)
     price_usd = Decimal(290)

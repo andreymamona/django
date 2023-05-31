@@ -1,12 +1,11 @@
 import logging
 from django.http import HttpResponse
-from django.db.models import Avg, Count, Min, Sum, Q, FloatField, Func, F, Value
+from django.db.models import Sum, F
 from django.shortcuts import render
-from django.views.generic import ListView
+
 from products.forms import CreateItemForm
-from products.models import Product, Purchase
-from django_tables2 import SingleTableView
-from .tables import ProductTable
+from products.models import Product
+
 
 logger = logging.getLogger(__name__)
 

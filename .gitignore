@@ -16,3 +16,6 @@ __pycache__/
 *.jpg
 *.png
 *.webp
+
+media/
+static/
