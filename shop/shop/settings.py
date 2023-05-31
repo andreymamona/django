@@ -86,9 +86,9 @@ WSGI_APPLICATION = 'shop.wsgi.application'
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.postgresql",
-        "NAME": "django",
-        "USER": "django",
-        "PASSWORD": os.getenv("POSTGRES_PASSWORD", 'django'),
+        "NAME": os.getenv("POSTGRES_NAME", 'django'),
+        "USER": os.getenv("POSTGRES_USER", 'django'),
+        "PASSWORD": os.getenv("POSTGRES_PASS", 'django'),
         "HOST": "localhost",
         "PORT": 5432,
     }
