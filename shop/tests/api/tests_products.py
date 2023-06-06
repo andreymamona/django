@@ -4,6 +4,7 @@ from rest_framework.test import APIClient
 from products.models import Product
 from tests.factories import ProductFactory
 
+
 @pytest.mark.django_db
 class TestProductsAPI:
     def setup_method(self):
@@ -15,13 +16,17 @@ class TestProductsAPI:
         assert len(response.json()) == 0
 
     def test_post_function(self):
-        response = self.client.post("/api/products/", data={
-            "title": 'test',
-            "price": '100',
-            "description": 'test@test.by',
-            "image": '',
-            "color": 'RED',
-        }, follow=True)
+        response = self.client.post(
+            "/api/products/",
+            data={
+                "title": "test",
+                "price": "100",
+                "description": "test@test.by",
+                "image": "",
+                "color": "RED",
+            },
+            follow=True,
+        )
         assert response.status_code == 201
         assert Product.objects.exists()
 
@@ -30,11 +35,13 @@ class TestProductsAPI:
         assert len(response.json()) == 1
 
     def test_delete_product(self):
-        product = Product.objects.create(title='test', price='100', description='test@test.by', image='', color='RED')
+        product = Product.objects.create(
+            title="test", price="100", description="test@test.by", image="", color="RED"
+        )
 
         response = self.client.get(f"/api/products/{product.id}", follow=True)
         assert response.status_code == 200
-        assert response.json()["title"] == 'test'
+        assert response.json()["title"] == "test"
 
         response = self.client.delete(f"/api/products/{product.id}/", follow=True)
         assert response.status_code == 204

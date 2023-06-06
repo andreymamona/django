@@ -23,9 +23,9 @@ def index(request):
 
     sort_price = request.GET.get("sort_price")
     if sort_price is not None:
-        if sort_price == 'up':
+        if sort_price == "up":
             products = products.order_by("price")
-        elif sort_price == 'down':
+        elif sort_price == "down":
             products = products.order_by("-price")
 
     sort_sales_cost = request.GET.get("sort_sales_cost")
@@ -48,19 +48,22 @@ def index(request):
 
 
 def additem(request):
-    form = CreateItemForm()
+    CreateItemForm()
     if request.method == "POST":
         form = CreateItemForm(request.POST)
         if form.is_valid():
-            product = Product.objects.create(title=form.cleaned_data['title'],
-                                             price=form.cleaned_data['price'],
-                                             description=form.cleaned_data['description'],
-                                             # color=form.cleaned_data['color'],
-                                             )
-            return HttpResponse(f"Item added :) <br> <p><a href='/'>Main page</a></p>")
+            Product.objects.create(
+                title=form.cleaned_data["title"],
+                price=form.cleaned_data["price"],
+                description=form.cleaned_data["description"],
+                # color=form.cleaned_data['color'],
+            )
+            return HttpResponse("Item added :) <br> <p><a href='/'>Main page</a></p>")
         else:
-            return HttpResponse(f"Sorry, some data is invalid <br> <p><a href='/'>Main page</a></p>"
-                                f"<p><a href='/additem'>Add item</a></p>")
+            return HttpResponse(
+                "Sorry, some data is invalid <br> <p><a href='/'>Main page</a></p>"
+                "<p><a href='/additem'>Add item</a></p>"
+            )
     else:
         form = CreateItemForm()
 
@@ -72,7 +75,7 @@ def product_info(request):
     try:
         product = Product.objects.get(id=item_id)
     except Product.DoesNotExist:
-        return HttpResponse(f"Ooops...wrong ID<br> <p><a href='/'>Main page</a></p>")
+        return HttpResponse("Ooops...wrong ID<br> <p><a href='/'>Main page</a></p>")
     context = {
         "product": product,
     }

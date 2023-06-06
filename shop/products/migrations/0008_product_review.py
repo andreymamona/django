@@ -4,16 +4,15 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
-        ('reviews', '0001_initial'),
-        ('products', '0007_alter_product_image'),
+        ("reviews", "0001_initial"),
+        ("products", "0007_alter_product_image"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='product',
-            name='review',
-            field=models.ManyToManyField(related_name='products', to='reviews.review'),
+            model_name="product",
+            name="review",
+            field=models.ManyToManyField(related_name="products", to="reviews.review"),
         ),
     ]

@@ -2,7 +2,6 @@ from django.contrib import admin
 
 from products.models import Product
 from products.models import Purchase
-from reviews.models import Review
 
 
 class PurchaseAdminInline(admin.StackedInline):
@@ -14,7 +13,10 @@ class ProductAdmin(admin.ModelAdmin):
     list_display = ("title", "image", "price", "description", "created_at")
     fields = ("title", "image", "price", "description", "created_at")
     readonly_fields = ("created_at",)
-    search_fields = ("title", "price",)
+    search_fields = (
+        "title",
+        "price",
+    )
     inlines = (PurchaseAdminInline,)
 
 

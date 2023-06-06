@@ -6,38 +6,82 @@ import django.db.models.deletion
 
 
 class Migration(migrations.Migration):
-
     initial = True
 
     dependencies = [
         migrations.swappable_dependency(settings.AUTH_USER_MODEL),
-        ('products', '0007_alter_product_image'),
+        ("products", "0007_alter_product_image"),
     ]
 
     operations = [
         migrations.CreateModel(
-            name='Article',
+            name="Article",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('image', models.ImageField(blank=True, null=True, upload_to='reviews/')),
-                ('review_text', models.TextField()),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                (
+                    "image",
+                    models.ImageField(blank=True, null=True, upload_to="reviews/"),
+                ),
+                ("review_text", models.TextField()),
             ],
         ),
         migrations.CreateModel(
-            name='Review',
+            name="Review",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('review_title', models.CharField(max_length=255)),
-                ('tags_in_review', models.CharField(blank=True, max_length=255, null=True)),
-                ('created_at', models.DateTimeField(auto_now_add=True, db_index=True)),
-                ('article', models.OneToOneField(on_delete=django.db.models.deletion.CASCADE, related_name='reviews', to='reviews.article')),
-                ('product', models.ManyToManyField(related_name='reviews', to='products.product')),
-                ('user', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='reviews', to=settings.AUTH_USER_MODEL)),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("review_title", models.CharField(max_length=255)),
+                (
+                    "tags_in_review",
+                    models.CharField(blank=True, max_length=255, null=True),
+                ),
+                ("created_at", models.DateTimeField(auto_now_add=True, db_index=True)),
+                (
+                    "article",
+                    models.OneToOneField(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        related_name="reviews",
+                        to="reviews.article",
+                    ),
+                ),
+                (
+                    "product",
+                    models.ManyToManyField(
+                        related_name="reviews", to="products.product"
+                    ),
+                ),
+                (
+                    "user",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        related_name="reviews",
+                        to=settings.AUTH_USER_MODEL,
+                    ),
+                ),
             ],
         ),
         migrations.AddField(
-            model_name='article',
-            name='review',
-            field=models.OneToOneField(on_delete=django.db.models.deletion.CASCADE, related_name='articles', to='reviews.review'),
+            model_name="article",
+            name="review",
+            field=models.OneToOneField(
+                on_delete=django.db.models.deletion.CASCADE,
+                related_name="articles",
+                to="reviews.review",
+            ),
         ),
     ]

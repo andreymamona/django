@@ -14,11 +14,14 @@ class ProfileAdmin(admin.ModelAdmin):
 
 @admin.register(Address)
 class AddressAdmin(admin.ModelAdmin):
-    list_display = ("user", "city", "street", "building_number", "appartment", "created_at")
+    list_display = (
+        "user",
+        "city",
+        "street",
+        "building_number",
+        "appartment",
+        "created_at",
+    )
     fields = ("user", "city", "street", "building_number", "appartment", "created_at")
     readonly_fields = ("created_at",)
     search_fields = ("user__email", "user__profile__last_name", "city", "street")
-
-
-
-

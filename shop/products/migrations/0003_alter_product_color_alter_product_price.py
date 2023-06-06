@@ -4,20 +4,32 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
-        ('products', '0002_product_color'),
+        ("products", "0002_product_color"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='product',
-            name='color',
-            field=models.CharField(choices=[('RED', 'Red'), ('GREEN', 'Green'), ('BLUE', 'Blue'), ('BLACK', 'Black'), ('WHITE', 'White'), ('BROWN', 'Brown'), ('YELLOW', 'Yellow'), (None, None)], default=None, max_length=32),
+            model_name="product",
+            name="color",
+            field=models.CharField(
+                choices=[
+                    ("RED", "Red"),
+                    ("GREEN", "Green"),
+                    ("BLUE", "Blue"),
+                    ("BLACK", "Black"),
+                    ("WHITE", "White"),
+                    ("BROWN", "Brown"),
+                    ("YELLOW", "Yellow"),
+                    (None, None),
+                ],
+                default=None,
+                max_length=32,
+            ),
         ),
         migrations.AlterField(
-            model_name='product',
-            name='price',
+            model_name="product",
+            name="price",
             field=models.FloatField(default=0),
         ),
     ]

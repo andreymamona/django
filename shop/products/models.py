@@ -18,17 +18,17 @@ class Product(models.Model):
     external_id = models.CharField(max_length=255, blank=True, null=True)
     title = models.CharField(max_length=255)
     price = models.FloatField(default=0)
-    image = ImageField(upload_to="products/", blank=True, null=True, default="image_item_default.png")
+    image = ImageField(
+        upload_to="products/", blank=True, null=True, default="image_item_default.png"
+    )
     description = models.TextField(blank=True, null=True)
     category = models.TextField(blank=True, null=True)
     # color = models.CharField(max_length=32, choices=COLOR_CHOICES, default=None)
-    created_at = models.DateTimeField(
-        auto_now_add=True, db_index=True
-    )
+    created_at = models.DateTimeField(auto_now_add=True, db_index=True)
     review = models.ManyToManyField("reviews.Review", related_name="products")
 
     def __str__(self):
-        return f'Product: {self.title} Price: {self.price}'
+        return f"Product: {self.title} Price: {self.price}"
 
 
 class Purchase(models.Model):

@@ -21,17 +21,16 @@ from products.views import index, additem, product_info
 from profiles.views import profiles, register, login_view, logout_view
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
+    path("admin/", admin.site.urls),
     path("api/", include("api.urls", namespace="api")),
     path("api/auth/", include("rest_framework.urls", namespace="rest_framework")),
-    path('', index, name='index'),
-    path('profiles/', profiles, name='profiles'),
-    path('register/', register, name='register'),
-    path('additem/', additem, name='additem'),
-    path('login/', login_view, name='login_view'),
-    path('logout/', logout_view, name='logout_view'),
-    path('product_info/', product_info, name='product_info'),
-
+    path("", index, name="index"),
+    path("profiles/", profiles, name="profiles"),
+    path("register/", register, name="register"),
+    path("additem/", additem, name="additem"),
+    path("login/", login_view, name="login_view"),
+    path("logout/", logout_view, name="logout_view"),
+    path("product_info/", product_info, name="product_info"),
 ]
 
 if settings.DEBUG:

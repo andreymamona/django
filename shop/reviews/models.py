@@ -9,7 +9,11 @@ class Review(models.Model):
     )
     product = models.ManyToManyField("products.Product", related_name="reviews")
     article = models.OneToOneField(
-        "reviews.Article", on_delete=models.CASCADE, related_name="reviews", blank=True, null=True
+        "reviews.Article",
+        on_delete=models.CASCADE,
+        related_name="reviews",
+        blank=True,
+        null=True,
     )
     review_title = models.CharField(max_length=255)
     tags_in_review = models.CharField(max_length=255, blank=True, null=True)
