@@ -1,7 +1,5 @@
 from django import forms
 
-# from products.models import COLOR_CHOICES
-
 
 class CreateItemForm(forms.Form):
     title = forms.CharField(max_length=255)
