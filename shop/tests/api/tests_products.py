@@ -1,7 +1,6 @@
 import pytest
-from rest_framework.test import APIClient
-
 from products.models import Product
+from rest_framework.test import APIClient
 from tests.factories import ProductFactory
 
 

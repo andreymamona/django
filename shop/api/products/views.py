@@ -1,12 +1,11 @@
-from django.db.models import Sum
+from api.products.serializers import (ProductModelSerializer,
+                                      ProductSerializer,
+                                      PurchaseModelSerializer)
+from products.models import Product, Purchase
 from rest_framework import viewsets
 from rest_framework.generics import ListAPIView
-from api.products.serializers import (
-    ProductModelSerializer,
-    PurchaseModelSerializer,
-    ProductSerializer,
-)
-from products.models import Product, Purchase
+
+from django.db.models import Sum
 
 
 class ProductViewSet(viewsets.ModelViewSet):

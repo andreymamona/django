@@ -1,7 +1,6 @@
-from django.contrib import admin
+from products.models import Product, Purchase
 
-from products.models import Product
-from products.models import Purchase
+from django.contrib import admin
 
 
 class PurchaseAdminInline(admin.StackedInline):

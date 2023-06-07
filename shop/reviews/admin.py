@@ -1,5 +1,6 @@
+from reviews.models import Article, Review
+
 from django.contrib import admin
-from reviews.models import Review, Article
 
 
 @admin.register(Review)

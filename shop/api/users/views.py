@@ -1,14 +1,15 @@
-from django.contrib.auth import authenticate
-from django.contrib.auth.models import User
+from api.users.serializers import (LoginSerializer, LogoutSerializer,
+                                   RegisterSerializer)
 from rest_framework import status
-from rest_framework.authentication import TokenAuthentication, BasicAuthentication
+from rest_framework.authentication import (BasicAuthentication,
+                                           TokenAuthentication)
+from rest_framework.authtoken.models import Token
 from rest_framework.generics import CreateAPIView
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
-from rest_framework.authtoken.models import Token
 
-
-from api.users.serializers import RegisterSerializer, LoginSerializer, LogoutSerializer
+from django.contrib.auth import authenticate
+from django.contrib.auth.models import User
 
 
 class RegisterView(CreateAPIView):

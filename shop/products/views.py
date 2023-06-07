@@ -1,11 +1,11 @@
 import logging
-from django.http import HttpResponse
-from django.db.models import Sum, F
-from django.shortcuts import render
 
 from products.forms import CreateItemForm
 from products.models import Product
 
+from django.db.models import F, Sum
+from django.http import HttpResponse
+from django.shortcuts import render
 
 logger = logging.getLogger(__name__)
 

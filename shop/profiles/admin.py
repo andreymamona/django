@@ -1,7 +1,6 @@
-from django.contrib import admin
+from profiles.models import Address, Profile
 
-from profiles.models import Profile
-from profiles.models import Address
+from django.contrib import admin
 
 
 @admin.register(Profile)

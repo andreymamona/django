@@ -1,12 +1,10 @@
-from django.urls import include, path
+from api.products.views import (ProductViewSet, PurchaseViewSet,
+                                TheMostExpensiveProductViewSet,
+                                TheMostPopularProductViewSet)
+from api.users.views import LoginView, LogoutView, RegisterView
 from rest_framework import routers
-from api.products.views import (
-    ProductViewSet,
-    PurchaseViewSet,
-    TheMostExpensiveProductViewSet,
-    TheMostPopularProductViewSet,
-)
-from api.users.views import RegisterView, LoginView, LogoutView
+
+from django.urls import include, path
 
 app_name = "api"
 

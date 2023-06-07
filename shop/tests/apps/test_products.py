@@ -1,4 +1,5 @@
 import pytest
+
 from django.test.client import Client
 
 

@@ -1,13 +1,13 @@
-from django.shortcuts import render, redirect
 import logging
-from django.http import HttpResponse
-from django.contrib.auth.models import User
-from django.conf import settings
-from django.contrib.auth import logout, login, authenticate
-
-from profiles.forms import RegisterForm, LoginForm
 
 from faker import Faker
+from profiles.forms import LoginForm, RegisterForm
+
+from django.conf import settings
+from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.models import User
+from django.http import HttpResponse
+from django.shortcuts import redirect, render
 
 fake = Faker()
 
